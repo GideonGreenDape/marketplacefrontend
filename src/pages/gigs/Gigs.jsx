@@ -12,42 +12,63 @@ function Gigs() {
   const maxRef = useRef();
 
   const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const cat = params.get("cat") || "all";
 
-  const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ["gigs"],
+  
+  const categoryNameMap = {
+    design: "Graphics & Design",
+    video: "Video & Animation",
+    writing: "Writing & Translation",
+    ai: "AI Services",
+    marketing: "Digital Marketing",
+    music: "Music & Audio",
+    tech: "Programming & Tech",
+    business: "Business",
+    lifestyle: "Lifestyle",
+    photography: "photography",
+    data: "data",
+  };
+
+  const categoryDisplay = categoryNameMap[cat] || "All Gigs";
+
+   const { isLoading, error, data, refetch } = useQuery({
+    queryKey: ["gigs", search, sort],
     queryFn: () =>
       newRequest
         .get(
-          `/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
+          `/gigs${search}${
+            search.includes("?") ? "&" : "?"
+          }min=${minRef.current?.value || ""}&max=${
+            maxRef.current?.value || ""
+          }&sort=${sort}`
         )
-        .then((res) => {
-          return res.data;
-        }),
+        .then((res) => res.data),
   });
 
-  console.log(data);
-
+  
   const reSort = (type) => {
     setSort(type);
     setOpen(false);
   };
 
+  
   useEffect(() => {
     refetch();
   }, [sort]);
 
+  
   const apply = () => {
     refetch();
   };
 
   return (
     <div className="gigs">
-      <div className="container">
-        <span className="breadcrumbs">Liverr > Graphics & Design ></span>
-        <h1>AI Artists</h1>
-        <p>
-          Explore the boundaries of art and technology with Liverr's AI artists
-        </p>
+     <div className="container">
+        <span className="breadcrumbs">Talent Marketplace &gt; {categoryDisplay} &gt;</span>
+        <h1>{categoryDisplay}</h1>
+        <p>Explore the best {categoryDisplay.toLowerCase()} gigs on Talent Marketplace.</p>
+
         <div className="menu">
           <div className="left">
             <span>Budget</span>

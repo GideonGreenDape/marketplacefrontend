@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.scss";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -8,17 +9,36 @@ function Footer() {
         <div className="top">
           <div className="item">
             <h2>Categories</h2>
-            <span>Graphics & Design</span>
-            <span>Digital Marketing</span>
-            <span>Writing & Translation</span>
-            <span>Video & Animation</span>
-            <span>Music & Audio</span>
-            <span>Programming & Tech</span>
-            <span>Data</span>
-            <span>Business</span>
-            <span>Lifestyle</span>
-            <span>Photography</span>
-            <span>Sitemap</span>
+            <Link className="link" to="/gigs?cat=design">
+              Graphics & Design
+            </Link>
+            <Link className="link" to="/gigs?cat=marketing">
+              Digital Marketing
+            </Link>
+            <Link className="link" to="/gigs?cat=writing">
+              Writing & Translation
+            </Link>
+            <Link className="link" to="/gigs?cat=video">
+              Video & Animation
+            </Link>
+            <Link className="link" to="/gigs?cat=music">
+              Music & Audio
+            </Link>
+            <Link className="link" to="/gigs?cat=tech">
+              Programming & Tech
+            </Link>
+            <Link className="link" to="/gigs?cat=data">
+              Data
+            </Link>
+            <Link className="link" to="/gigs?cat=business">
+              Business
+            </Link>
+            <Link className="link" to="/gigs?cat=lifestyle">
+              Lifestyle
+            </Link>
+            <Link className="link" to="/gigs?cat=photography">
+              Photography
+            </Link>
           </div>
           <div className="item">
             <h2>About</h2>
@@ -34,8 +54,8 @@ function Footer() {
             <h2>Support</h2>
             <span>Help & Support</span>
             <span>Trust & Safety</span>
-            <span>Selling on Fiverr</span>
-            <span>Buying on Fiverr</span>
+            <span>Talent on Market Place</span>
+            <span>Hiring on Market Place</span>
           </div>
           <div className="item">
             <h2>Community</h2>
@@ -48,28 +68,25 @@ function Footer() {
             <span>Affiliates</span>
             <span>Podcast</span>
             <span>Invite a Friend</span>
-            <span>Become a Seller</span>
+            <span>Become a Talent</span>
             <span>Community Standards</span>
           </div>
           <div className="item">
-            <h2>More From Fiverr</h2>
-            <span>Fiverr Business</span>
-            <span>Fiverr Pro</span>
-            <span>Fiverr Logo Maker</span>
-            <span>Fiverr Guides</span>
+            <h2>More From Talent Marketplace</h2>
+            <span>Market Place Business</span>
+            <span>Market Place Pro</span>
+            <span>Market Place Logo Maker</span>
+            <span>Market Place Guides</span>
             <span>Get Inspired</span>
-            <span>Fiverr Select</span>
-            <span>ClearVoice</span>
-            <span>Fiverr Workspace</span>
+            <span>Market Place Workspace</span>
             <span>Learn</span>
-            <span>Working Not Working</span>
           </div>
         </div>
         <hr />
         <div className="bottom">
           <div className="left">
-            <h2>fiverr</h2>
-            <span>© Fiverr International Ltd. 2023</span>
+            <h2>TalentMarket Place</h2>
+            <span>© Market Place International Ltd. 2025</span>
           </div>
           <div className="right">
             <div className="social">

@@ -42,8 +42,10 @@ function Gig() {
         <div className="container">
           <div className="left">
             <span className="breadcrumbs">
-              Fiverr {">"} Graphics & Design {">"}
+              Talent Marketplace {">"} {data.cat ? data.cat.replace("-", " ") : "Category"}{" "}
+              {">"}
             </span>
+
             <h1>{data.title}</h1>
             {isLoadingUser ? (
               "loading"
@@ -157,7 +159,7 @@ function Gig() {
               ))}
             </div>
             <Link to={`/pay/${id}`}>
-            <button>Continue</button>
+              <button>Continue</button>
             </Link>
           </div>
         </div>
