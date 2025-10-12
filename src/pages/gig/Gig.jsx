@@ -1,6 +1,9 @@
 import React from "react";
 import "./Gig.scss";
-import { Slider } from "infinite-react-carousel/lib";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
@@ -32,6 +35,14 @@ function Gig() {
     enabled: !!userId,
   });
 
+  // ⚙️ slick slider settings (replaces slidesToShow / arrowsScroll props)
+  const sliderSettings = {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    infinite: true,
+  };
+
   return (
     <div className="gig">
       {isLoading ? (
@@ -42,8 +53,8 @@ function Gig() {
         <div className="container">
           <div className="left">
             <span className="breadcrumbs">
-              Talent Marketplace {">"} {data.cat ? data.cat.replace("-", " ") : "Category"}{" "}
-              {">"}
+              Talent Marketplace {">"}{" "}
+              {data.cat ? data.cat.replace("-", " ") : "Category"} {">"}
             </span>
 
             <h1>{data.title}</h1>
@@ -71,11 +82,14 @@ function Gig() {
                 )}
               </div>
             )}
-            <Slider slidesToShow={1} arrowsScroll={1} className="slider">
+
+            {/* 🔁 replaced infinite-react-carousel with react-slick */}
+            <Slider {...sliderSettings} className="slider">
               {data.images.map((img) => (
                 <img key={img} src={img} alt="" />
               ))}
             </Slider>
+
             <h2>About This Gig</h2>
             <p>{data.desc}</p>
             {isLoadingUser ? (
