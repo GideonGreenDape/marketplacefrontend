@@ -59,7 +59,7 @@ function Register() {
       setTimeout(() => navigate("/"), 2000);
     } catch (err) {
       console.log(err);
-      setErrorMsg(err?.response?.data?.message || "Something went wrong. Please try again.");
+      setErrorMsg(err?.response?.data?.message || "Email address are unique- duplicate email found.");
     } finally {
       setLoading(false);
     }
