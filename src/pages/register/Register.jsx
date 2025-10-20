@@ -16,6 +16,10 @@ function Register() {
     desc: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -29,25 +33,47 @@ function Register() {
       return { ...prev, isSeller: e.target.checked };
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = await upload(file);
+    // ✅ Password validation
+    if (user.password.length < 8) {
+      setErrorMsg("Password must be at least 8 characters long.");
+      return;
+    }
+
+    setLoading(true);
+    setErrorMsg("");
+    setSuccessMsg("");
+
     try {
+      const url = file ? await upload(file) : "";
       await newRequest.post("/auth/register", {
         ...user,
         img: url,
       });
-      navigate("/")
+
+      // ✅ Success feedback before redirect
+      setSuccessMsg("Registration successful! Redirecting...");
+      setTimeout(() => navigate("/"), 2000);
     } catch (err) {
       console.log(err);
+      setErrorMsg(err?.response?.data?.message || "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
+
   return (
     <div className="register">
       <form onSubmit={handleSubmit}>
         <div className="left">
           <h1>Create a new account</h1>
+
+          {errorMsg && <span className="span">{errorMsg}</span>}
+          {successMsg && <span className="span" style={{ color: "green" }}>{successMsg}</span>}
+
           <label htmlFor="">Username</label>
           <input
             name="username"
@@ -55,6 +81,7 @@ function Register() {
             placeholder="johndoe"
             onChange={handleChange}
           />
+
           <label htmlFor="">Email</label>
           <input
             name="email"
@@ -62,10 +89,18 @@ function Register() {
             placeholder="email"
             onChange={handleChange}
           />
+
           <label htmlFor="">Password</label>
-          <input name="password" type="password" onChange={handleChange} />
+          <input
+            name="password"
+            type="password"
+            placeholder="Minimum 8 characters"
+            onChange={handleChange}
+          />
+
           <label htmlFor="">Profile Picture</label>
           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+
           <label htmlFor="">Country</label>
           <input
             name="country"
@@ -73,8 +108,12 @@ function Register() {
             placeholder="Nigeria"
             onChange={handleChange}
           />
-          <button type="submit">Register</button>
+
+          <button type="submit" disabled={loading}>
+            {loading ? "Registering..." : "Register"}
+          </button>
         </div>
+
         <div className="right">
           <h1>I want to become a Freelancer</h1>
           <div className="toggle">
@@ -84,6 +123,7 @@ function Register() {
               <span className="slider round"></span>
             </label>
           </div>
+
           <label htmlFor="">Phone Number</label>
           <input
             name="phone"
@@ -91,11 +131,11 @@ function Register() {
             placeholder="+234 001 0000 000"
             onChange={handleChange}
           />
+
           <label htmlFor="">Description</label>
           <textarea
             placeholder="A short description of yourself"
             name="desc"
-            id=""
             cols="30"
             rows="10"
             onChange={handleChange}

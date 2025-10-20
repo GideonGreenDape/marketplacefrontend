@@ -38,40 +38,37 @@ function Navbar() {
   return (
     <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">
-        <div className="logo">
-          <Link className="link" to="/">
-            <span className="text">Talent MarketPlace</span>
+        <div className="left_align">
+          <Link className="text " to="/">
+            <span className="logotext">Talent MarketPlace</span>
           </Link>
-          <span className="dot">.</span>
+          <span className="text dot">.</span>
         </div>
         <div className="links">
-          <span>Our Business</span>
-          <span>Explore</span>
-          {/* <span>English</span> */}
-          {!currentUser?.isSeller && <span>Become a Freelancer</span>}
+          {!currentUser?.isSeller && <span className="linktext">Become a Freelancer</span>}
           {currentUser ? (
             <div className="user" onClick={() => setOpen(!open)}>
               <img src={currentUser.img || "/img/noavatar.jpg"} alt="" />
-              <span>{currentUser?.username}</span>
+              <span className="username" >{currentUser?.username}</span>
               {open && (
                 <div className="options">
                   {currentUser.isSeller && (
                     <>
-                      <Link className="link" to="/mygigs">
+                      <Link className="optiontext" to="/mygigs">
                         Gigs
                       </Link>
-                      <Link className="link" to="/add">
+                      <Link className="optiontext" to="/add">
                         Add New Gig
                       </Link>
                     </>
                   )}
-                  <Link className="link" to="/orders">
+                  <Link className="optiontext" to="/orders">
                     Orders
                   </Link>
-                  <Link className="link" to="/messages">
+                  <Link className="optiontext" to="/messages">
                     Messages
                   </Link>
-                  <Link className="link" onClick={handleLogout}>
+                  <Link className="optiontext" onClick={handleLogout}>
                     Logout
                   </Link>
                 </div>
@@ -79,10 +76,10 @@ function Navbar() {
             </div>
           ) : (
             <>
-              <Link to="/login" className="link">
+              <Link to="/login" className="signInText">
                 Sign in
               </Link>
-              <Link className="link" to="/register">
+              <Link className="buttonlink " to="/register">
                 <button>Join</button>
               </Link>
             </>

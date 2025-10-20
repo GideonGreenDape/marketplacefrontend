@@ -1,9 +1,11 @@
 .messages {
   display: flex;
   justify-content: center;
+  margin-left: 40px;
+  margin-top: 80px;
 
   .container {
-    width: 1400px;
+    // width: 1400px;
     padding: 50px 0px;
 
     .title {
@@ -27,9 +29,11 @@
         height: 100px;
         th {
           text-align: left;
+          width: fit-content;
         }
         td {
           padding: 10px;
+          width: fit-content;
 
           &:first-child {
             font-weight: 500;
