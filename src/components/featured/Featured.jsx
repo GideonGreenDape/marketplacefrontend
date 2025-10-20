@@ -36,9 +36,9 @@ function Featured() {
             <button>AI Services</button>
           </div>
         </div>
-        <div className="right">
+        {/* <div className="right">
           <img src="/img/mydreamconnectlogo.png" alt="" />
-        </div>
+        </div> */}
       </div>
     </div>
   );
