@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./AdminDashboard.scss";
+import "./adminDashboard.scss";
 import newRequest from "../../utils/newRequest";
 import { toast } from "react-toastify";
 
