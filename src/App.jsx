@@ -19,6 +19,10 @@ import {
 } from "@tanstack/react-query";
 import Pay from "./pages/pay/Pay";
 import Success from "./pages/success/Success";
+import EngageTalents from "./pages/EngageTalents/EngageTalents";
+import TalentProfile from "./pages/TalentProfile/TalentProfile";
+import AdminDashboard from "./pages/adminDashboard/adminDashboard";
+
 function App() {
   const queryClient = new QueryClient();
 
@@ -39,10 +43,10 @@ function App() {
       path: "/",
       element: <Layout />,
       children: [
-        {
-          path: "/",
-          element: <Home />,
-        },
+        // {
+        //   path: "/",
+        //   element: <Home />,
+        // },
         {
           path: "/gigs",
           element: <Gigs />,
@@ -72,12 +76,24 @@ function App() {
           element: <Gig />,
         },
         {
-          path: "/register",
+          path: "/",
           element: <Register />,
         },
         {
           path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/Talents",
+          element: <EngageTalents />,
+        },
+        {
+          path: "/talent/:id",
+          element: <TalentProfile />,
+        },
+         {
+          path: "/admin",
+          element: <AdminDashboard />,
         },
         {
           path: "/pay/:id",

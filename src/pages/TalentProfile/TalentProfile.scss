@@ -1,0 +1,114 @@
+.talent-profile {
+ 
+  padding: 4rem 2rem;
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profile-header {
+     margin-top: 120px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 1rem;
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .trained-tag {
+    margin-top: 15px;
+    background: #a4c70a;
+    color: #fff;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  a {
+    color: #0077ff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .skills {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+
+      li {
+        background: #f3f3f3;
+        padding: 0.4rem 0.8rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+
+.talent-profile-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+
+  p {
+    margin-top: 1rem;
+    color: #555;
+    font-size: 0.9rem;
+  }
+
+  .loader {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+
+    span {
+      width: 12px;
+      height: 12px;
+      background: #a4c70a;
+      border-radius: 50%;
+      animation: bounce 1s infinite ease-in-out;
+
+      &:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      &:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      &:nth-child(4) {
+        animation-delay: 0.6s;
+      }
+    }
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}

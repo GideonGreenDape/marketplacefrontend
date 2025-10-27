@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const newRequest = axios.create({
-  baseURL: 'https://marketplace-backend-uhjz.onrender.com/api/',
+  baseURL: 'http://localhost:5000',
   withCredentials: true,
 });
 
