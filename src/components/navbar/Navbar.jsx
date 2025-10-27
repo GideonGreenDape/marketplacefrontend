@@ -6,8 +6,8 @@ import "./Navbar.scss";
 function Navbar() {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
+
   const { pathname } = useLocation();
-  const navigate = useNavigate();
 
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -21,6 +21,9 @@ function Navbar() {
   }, []);
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  console.log(currentUser);
+
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -35,59 +38,54 @@ function Navbar() {
   return (
     <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">
-        <div className="logo">
-          <Link to="/" className="link">
-            <span className="text">mydreamconnect</span>
+        <div className="left_align">
+          <Link className="text" to="/">
+            <span className="logotext">Talent MarketPlace</span>
           </Link>
-          <span className="dot">.</span>
+          <span className="text dot">.</span>
         </div>
-
         <div className="links">
-          <span>MyDreamConnect Business</span>
-          <span>Explore</span>
-          <span>English</span>
-          <span>Sign in</span>
-
-          {!currentUser?.isSeller && <span>Become a Seller</span>}
-
-          {!currentUser ? (
-            <button onClick={() => navigate("/register")}>Join</button>
-          ) : (
+          {/* {!currentUser?.isSeller && <span className="linktext">Become a Freelancer</span>}
+          {currentUser ? (
             <div className="user" onClick={() => setOpen(!open)}>
-              <img
-                src={currentUser.img || "/img/noavatar.jpg"}
-                alt=""
-              />
-              <span>{currentUser?.username}</span>
-
+              <img src={currentUser.img || "/img/noavatar.jpg"} alt="" />
+              <span className="username">{currentUser?.username}</span>
               {open && (
                 <div className="options">
                   {currentUser.isSeller && (
                     <>
-                      <Link className="link" to="/mygigs">
+                      <Link className="optiontext" to="/mygigs">
                         Gigs
                       </Link>
-                      <Link className="link" to="/add">
+                      <Link className="optiontext" to="/add">
                         Add New Gig
                       </Link>
                     </>
                   )}
-                  <Link className="link" to="/orders">
+                  <Link className="optiontext" to="/orders">
                     Orders
                   </Link>
-                  <Link className="link" to="/messages">
+                  <Link className="optiontext" to="/messages">
                     Messages
                   </Link>
-                  <Link className="link" onClick={handleLogout}>
+                  <Link className="optiontext" onClick={handleLogout}>
                     Logout
                   </Link>
                 </div>
               )}
             </div>
-          )}
+          ) :  */}
+          <>
+            {/* <Link to="/login" className="signInText">
+                Sign in
+              </Link> */}
+            <Link className="buttonlink" to="/register">
+              <button>Join</button>
+            </Link>
+          </>
+          {/* } */}
         </div>
       </div>
-
       {/* {(active || pathname !== "/") && (
         <>
           <hr />
